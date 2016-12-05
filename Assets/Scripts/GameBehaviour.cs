@@ -9,7 +9,7 @@ namespace AssemblyCSharp
 		[SerializeField]
 		private GameObject levelFinishPopup;
 
-		private GameElementsModel gameElementsModel;
+		private GameElementsController gameElementsModel;
 		private PlayerModel playerModel;
 		private GameStateModel gameStateModel;
 
@@ -20,14 +20,14 @@ namespace AssemblyCSharp
 
 		private void Init()
 		{
-			gameElementsModel = new GameElementsModel();
+			gameElementsModel = new GameElementsController();
 			playerModel = new PlayerModel();
 			gameStateModel = new GameStateModel();
 			levelFinishPopup.SetActive(false);
 
 			InitEventListeners();
 
-			GameEvent.OnGameInitialized();
+			GameEvent.GameInitialized();
 		}
 
 		private void InitEventListeners()
@@ -75,15 +75,15 @@ namespace AssemblyCSharp
 		private void ShowWinMessage()
 		{
 			levelFinishPopup.SetActive(true);
-			levelFinishPopup.transform.Find("Panel/YouWonText").GetComponent<Text>().text = "";
-			levelFinishPopup.transform.Find("Panel/RestartButton").GetComponent<Button>().onClick.AddListener(OnRestartClick);
+			levelFinishPopup.transform.Find("YouWonText").GetComponent<Text>().text = "You Won!";
+			levelFinishPopup.transform.Find("RestartButton").GetComponent<Button>().onClick.AddListener(OnRestartClick);
 		}
 
 		private void ShowLoseMessage()
 		{
 			levelFinishPopup.SetActive(true);
-			levelFinishPopup.transform.Find("Panel/YouWonText").GetComponent<Text>().text = "";
-			levelFinishPopup.transform.Find("Panel/RestartButton").GetComponent<Button>().onClick.AddListener(OnRestartClick);
+			levelFinishPopup.transform.Find("YouWonText").GetComponent<Text>().text = "You Lost";
+			levelFinishPopup.transform.Find("RestartButton").GetComponent<Button>().onClick.AddListener(OnRestartClick);
 		}
 
 		private void OnRestartClick()

@@ -88,11 +88,23 @@ public class GameEvent : MonoBehaviour {
 	public delegate void GameInitializedDelegate ();
 	public static event GameInitializedDelegate onGameInitialized;
 
-	public static void OnGameInitialized()
+	public static void GameInitialized()
 	{
 		if(onGameInitialized != null)
 		{
 			onGameInitialized();
+		}
+	}
+
+	// Image Target Initialized Event
+	public delegate void ImageTargetInitializedDelegate (GameObject imageTarget);
+	public static event ImageTargetInitializedDelegate onImageTargetInitialized;
+
+	public static void ImageTargetInitialized(GameObject imageTarget)
+	{
+		if(onImageTargetInitialized != null)
+		{
+			onImageTargetInitialized(imageTarget);
 		}
 	}
 }
